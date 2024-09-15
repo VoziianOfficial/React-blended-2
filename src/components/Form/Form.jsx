@@ -2,7 +2,7 @@ import { FiSearch } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import style from './Form.module.css';
 
-export const Form = () => {
+export const Form = ({ onSubmit }) => {
   const handelSubmit = e => {
     e.preventDefault();
     const { value } = e.target.elements.search;
@@ -10,7 +10,8 @@ export const Form = () => {
       toast.error('🦄 Enter some text');
       return;
     }
-    console.log(value);
+    onSubmit(value);
+    e.target.reset();
   };
   return (
     <form onSubmit={handelSubmit} className={style.form}>
